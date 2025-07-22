@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Production builds
+dist/
+build/
+storybook-static/
+
+# Generated files
+coverage/
+*.tsbuildinfo
+
+# Lockfiles
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Logs
+*.log
+
+# Environment files
+.env* 
