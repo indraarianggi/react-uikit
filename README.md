@@ -9,7 +9,7 @@ A modern, reusable Design System built with React, TypeScript, TailwindCSS, and 
 - 🧩 **Component Library**: Built on Shadcn UI primitives with custom extensions
 - 📖 **Storybook**: Interactive component documentation and testing
 - 🧪 **Testing**: Comprehensive unit tests with Jest and React Testing Library (100% component coverage)
-- 🔧 **Developer Experience**: ESLint, Prettier, and Stylelint configuration
+- 🔧 **Developer Experience**: ESLint, Prettier, Stylelint with automated pre-commit hooks
 - 📦 **Package Ready**: Configured for npm publishing with tree-shaking support
 - 🌗 **Dark Mode**: Full dark mode support with CSS variables
 - ♿ **Accessibility**: WCAG compliant components with proper ARIA attributes
@@ -62,6 +62,8 @@ cd ui-kit
 pnpm install
 ```
 
+> 🔧 **Pre-commit hooks are automatically configured** during installation
+
 2. **Start development:**
 
 ```bash
@@ -73,6 +75,12 @@ pnpm storybook    # Start Storybook
 pnpm build        # Build the library
 pnpm test         # Run tests
 ```
+
+3. **Enjoy enhanced developer experience:**
+   - Code is automatically formatted on commit
+   - Linting issues are fixed automatically
+   - Type errors prevent broken commits
+   - Consistent code quality across the team
 
 ## 🎯 Development Commands
 
@@ -90,6 +98,47 @@ pnpm test         # Run tests
 | `pnpm stylelint`       | Run Stylelint for CSS                     |
 | `pnpm type-check`      | Run TypeScript type checking              |
 | `pnpm build:storybook` | Build Storybook for deployment            |
+
+## 🔒 Code Quality & Git Hooks
+
+This project uses **automated pre-commit hooks** to ensure code quality and consistency:
+
+### Pre-commit Checks
+
+Every commit automatically runs:
+
+- **Lint-staged**: Runs linters only on staged files for fast feedback
+- **ESLint**: Fixes JavaScript/TypeScript issues automatically where possible
+- **Prettier**: Formats code to maintain consistent style
+- **Stylelint**: Lints and fixes CSS/SCSS issues
+- **Type Check**: Ensures TypeScript compilation success
+
+### Lint-staged Configuration
+
+The following tools run automatically on staged files:
+
+```json
+{
+  "*.{ts,tsx}": ["eslint --fix", "prettier --write"],
+  "*.{js,jsx}": ["eslint --fix", "prettier --write"],
+  "*.{json,md}": ["prettier --write"],
+  "*.{css,scss}": ["stylelint --fix", "prettier --write"]
+}
+```
+
+### Git Hook Setup
+
+- **Husky** manages git hooks
+- **Pre-commit hook** runs `lint-staged` + `type-check`
+- **Automatic setup** on `npm install` via `prepare` script
+
+### Benefits
+
+- ✅ **Prevents broken commits**: Type errors caught before commit
+- ✅ **Consistent formatting**: Code style enforced automatically
+- ✅ **Fast feedback**: Only staged files are checked
+- ✅ **Auto-fixes**: Many issues resolved automatically
+- ✅ **Team consistency**: Same standards applied for all contributors
 
 ## 🎨 Design Tokens
 
@@ -436,6 +485,13 @@ export const Default: Story = {
 
 ## 🚀 Continuous Integration
 
+### Pre-commit + CI/CD Strategy
+
+This project uses a **two-layer quality assurance approach**:
+
+1. **Pre-commit hooks** (local): Fast feedback on code quality
+2. **CI/CD pipeline** (remote): Comprehensive testing and deployment
+
 ### Recommended CI/CD Pipeline
 
 ```yaml
@@ -474,8 +530,29 @@ jobs:
 1. **Fork the repository**
 2. **Create a feature branch**: `git checkout -b feature/new-component`
 3. **Write tests** for your changes
-4. **Ensure all checks pass**: `pnpm lint && pnpm test && pnpm build`
-5. **Submit a pull request**
+4. **Commit your changes** - pre-commit hooks will automatically:
+   - Run lint-staged on changed files
+   - Fix linting issues where possible
+   - Format code with Prettier
+   - Run TypeScript type checking
+5. **Ensure all checks pass**: `pnpm lint && pnpm test && pnpm build`
+6. **Submit a pull request**
+
+### Development Workflow
+
+Thanks to our pre-commit hooks, you can focus on coding while quality checks happen automatically:
+
+```bash
+# Make your changes
+git add .
+
+# Commit triggers automatic quality checks
+git commit -m "feat: add new component"
+# ✅ Lint-staged runs automatically
+# ✅ Code formatting applied
+# ✅ Type checking performed
+# ✅ Commit succeeds if all checks pass
+```
 
 ### Adding New Components
 

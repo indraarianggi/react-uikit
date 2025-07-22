@@ -10,6 +10,8 @@ npm install
 pnpm install
 ```
 
+> 🔧 **Git hooks are automatically set up** during installation via the `prepare` script
+
 2. **Start development:**
 
 ```bash
@@ -85,7 +87,59 @@ Edit `src/tokens/index.ts` to customize:
 | `npm run test:watch`    | Run tests in watch mode  | Auto-rerun on changes             |
 | `npm run test:coverage` | Generate coverage report | Detailed coverage metrics         |
 | `npm run lint`          | Check code quality       | ESLint + TypeScript checking      |
+| `npm run lint:fix`      | Fix linting issues       | Auto-fix ESLint problems          |
 | `npm run format`        | Format code              | Prettier with Tailwind sorting    |
+| `npm run type-check`    | Check TypeScript         | Verify type correctness           |
+| `npm run lint-staged`   | Run staged file checks   | Used by pre-commit hook           |
+
+## 🔒 Automated Quality Checks
+
+This project includes **pre-commit hooks** that automatically maintain code quality:
+
+### What Happens on Every Commit
+
+```bash
+git add .
+git commit -m "your message"
+
+# 🚀 Automatic checks run:
+# ✅ Lint-staged checks only changed files
+# ✅ ESLint fixes issues automatically
+# ✅ Prettier formats your code
+# ✅ Stylelint fixes CSS issues
+# ✅ TypeScript type checking runs
+# ✅ Commit succeeds if all checks pass
+```
+
+### Pre-commit Hook Benefits
+
+- **🚀 Fast feedback**: Only staged files are checked
+- **🔧 Auto-fixes**: Many issues resolved automatically
+- **🛡️ Quality gates**: Prevents broken code from being committed
+- **📏 Consistency**: Same standards for all team members
+- **⚡ Zero setup**: Works immediately after `npm install`
+
+### Files Affected by Lint-staged
+
+- **TypeScript/JavaScript** (`*.ts`, `*.tsx`, `*.js`, `*.jsx`): ESLint + Prettier
+- **Stylesheets** (`*.css`, `*.scss`): Stylelint + Prettier
+- **Documentation** (`*.json`, `*.md`): Prettier formatting
+
+### If Pre-commit Checks Fail
+
+```bash
+# Example: Type error prevents commit
+git commit -m "add feature"
+# ❌ TypeScript error found
+# ❌ Commit blocked
+
+# Fix the issue and try again
+# Edit your files to fix the error
+git add .
+git commit -m "add feature"
+# ✅ All checks pass
+# ✅ Commit successful
+```
 
 ## Testing Philosophy
 
@@ -175,12 +229,18 @@ npm run type-check  # TypeScript compilation
 npm test            # 53 comprehensive tests
 ```
 
-### 🚀 **Pre-commit Checklist**
+### 🚀 **Development Checklist**
 
-Before pushing changes, ensure:
+**Automated (happens on every commit):**
+
+- ✅ Code formatting (Prettier)
+- ✅ Linting fixes (ESLint)
+- ✅ CSS linting (Stylelint)
+- ✅ Type checking (TypeScript)
+
+**Manual checks before pushing:**
 
 - [ ] All tests pass (`npm test`)
-- [ ] Linting passes (`npm run lint`)
 - [ ] Build succeeds (`npm run build`)
 - [ ] New components have tests + stories
 - [ ] Test coverage remains at 100% for components
