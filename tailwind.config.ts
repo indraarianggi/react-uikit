@@ -64,7 +64,7 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       spacing: designTokens.spacing,
-      fontSize: designTokens.typography.fontSize as any,
+      fontSize: designTokens.typography.fontSize as never,
       fontFamily: {
         sans: designTokens.typography.fontFamily.sans as string[],
         mono: designTokens.typography.fontFamily.mono as string[],

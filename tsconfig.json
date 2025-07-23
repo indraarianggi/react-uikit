@@ -34,12 +34,7 @@
       "@/components/*": ["./src/components/*"],
       "@/tokens/*": ["./src/tokens/*"],
       "@/utils/*": ["./src/utils/*"]
-    },
-
-    /* For building declaration files */
-    "declaration": true,
-    "declarationMap": true,
-    "outDir": "dist"
+    }
   },
   "include": ["src/**/*", "stories/**/*", "__tests__/**/*"],
   "exclude": [
