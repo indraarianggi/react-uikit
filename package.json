@@ -1,5 +1,5 @@
 {
-  "name": "@your-org/ui-kit",
+  "name": "@indraarianggi/ui-kit",
   "version": "0.1.0",
   "description": "A modern, reusable Design System built with React, TypeScript, TailwindCSS, and Shadcn UI",
   "main": "./dist/index.js",
@@ -7,9 +7,9 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.js"
     },
     "./styles": "./dist/index.css"
   },
@@ -46,7 +46,15 @@
     "shadcn-ui",
     "storybook"
   ],
-  "author": "Your Name <your.email@example.com>",
+  "author": "Indra Arianggi <indraarianggi@gmail.com>",
+  "homepage": "https://github.com/indraarianggi/react-uikit#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indraarianggi/react-uikit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/indraarianggi/react-uikit/issues"
+  },
   "license": "MIT",
   "peerDependencies": {
     "react": "^18.0.0",
