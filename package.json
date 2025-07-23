@@ -1,5 +1,5 @@
 {
-  "name": "@indraarianggi/ui-kit",
+  "name": "@indraarianggi/react-uikit",
   "version": "0.1.1",
   "description": "A modern, reusable Design System built with React, TypeScript, TailwindCSS, and Shadcn UI",
   "main": "./dist/index.js",
